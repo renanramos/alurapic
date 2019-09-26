@@ -7,13 +7,15 @@ import { FilterByDescription } from './filterByDescription.pipe';
 import { PhotoModule } from '../photo/photo.module';
 import { PhotosComponent } from './photos/photos.component';
 import { CardModule } from 'src/app/shared/component/card/card.module';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
     declarations: [
         PhotoListComponent,
         PhotosComponent,
         LoadButtonComponent,
-        FilterByDescription
+        FilterByDescription,
+        SearchComponent
     ],
     imports: [ 
         CommonModule,
