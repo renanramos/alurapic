@@ -1,6 +1,11 @@
-<app-search></app-search>
+<app-search 
+    (onTyping)="filter =  $event"
+    [value]="filter">
+</app-search>
 
-<app-photos [photos]="photos | filterByDescription: filter"></app-photos>
+<app-photos 
+    [photos]="photos | filterByDescription: filter">
+</app-photos>
 
 <app-load-button 
     (click)="load()" 
