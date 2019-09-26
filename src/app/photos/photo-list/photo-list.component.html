@@ -5,7 +5,7 @@
             class="rounded"
             placeholder="search..." 
             autofocus
-            (keyup)="filter = $event.target.value">
+            (keyup)="debounce.next($event.target.value)">
     </form>
 </div>
 <app-photos [photos]="photos | filterByDescription: filter"></app-photos>
