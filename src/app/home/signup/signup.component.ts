@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validat
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { NewUser } from './new-user';
 import { SignUpService } from './signup.service';
+import { PlatformDetectorService } from 'src/app/core/platform-detector/platform-detector.service';
 
 @Component({
     templateUrl: './signup.component.html'
@@ -13,12 +14,14 @@ import { SignUpService } from './signup.service';
 export class SignUpComponent implements OnInit {
 
     signupForm: FormGroup;
+    @ViewChild('emailInput', { static: false }) emailInput: ElementRef<HTMLInputElement>
 
     constructor(
         private formBuilder: FormBuilder,
         private signupService: SignUpService,
         private router: Router,
-        private userNotTakenValidatorService: UserNotTakenValidatorService) { }
+        private userNotTakenValidatorService: UserNotTakenValidatorService,
+        private platformDetectorService: PlatformDetectorService) { }
 
     ngOnInit() {
         this.signupForm = this.formBuilder.group({
@@ -28,14 +31,14 @@ export class SignUpComponent implements OnInit {
                     Validators.email
                 ]
             ],
-            fullName: ['', 
+            fullName: ['',
                 [
                     Validators.required,
                     Validators.minLength(2),
                     Validators.maxLength(40)
                 ]
             ],
-            userName: ['', 
+            userName: ['',
                 [
                     Validators.required,
                     lowerCaseValidator,
@@ -44,7 +47,7 @@ export class SignUpComponent implements OnInit {
                 ],
                 this.userNotTakenValidatorService.checkUserNameTaken()
             ],
-            password: ['', 
+            password: ['',
                 [
                     Validators.required,
                     Validators.minLength(8),
@@ -52,6 +55,7 @@ export class SignUpComponent implements OnInit {
                 ]
             ]
         })
+        
     }
 
     signup() {
@@ -60,9 +64,12 @@ export class SignUpComponent implements OnInit {
             .signup(newUser)
             .subscribe(
                 () => this.router.navigate(['']),
-                err => console.log(err)            
+                err => {
+                    console.log(err)
+                    this.platformDetectorService.isPlatformBrowser() &&
+                        this.emailInput.nativeElement.focus();
+                }
             );
-
     }
 
 }
