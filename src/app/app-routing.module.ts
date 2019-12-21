@@ -27,12 +27,12 @@ const routes: Routes = [
     }
   },
   {
-    path: 'user/:userName/p/add',
+    path: 'p/add',
     component: PhotoFormComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'user/:userName/p/:photoId',
+    path: 'p/:photoId',
     component: PhotoDetailsComponent
   },
   {
@@ -42,7 +42,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
