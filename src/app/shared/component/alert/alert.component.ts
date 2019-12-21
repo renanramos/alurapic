@@ -4,7 +4,7 @@ import { Alert, AlertType } from './alert';
 
 @Component({
   selector: 'app-alert',
-  templateUrl: 'alert.component.html'
+  templateUrl: './alert.component.html'
 })
 export class AlertComponent {
  
@@ -30,7 +30,7 @@ export class AlertComponent {
   }
 
   getAlertClass(alert: Alert){
-    if(!alert) {
+    if(alert) {
       switch (alert.alertType) {
         case AlertType.DANGER:
           return 'alert alert-danger';

@@ -1,0 +1,7 @@
+.btn-link {
+  color: #007bff;
+}
+
+.btn-link:hover {
+  cursor: pointer;
+}
