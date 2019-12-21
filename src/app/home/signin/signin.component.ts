@@ -23,14 +23,11 @@ export class SignInComponent implements OnInit {
             userName: ['', Validators.required],
             password: ['', Validators.required]
         });
-        this.platformDetectorService.isPlatformBrowser() &&
-        this.userNameInput.nativeElement.focus();
     }
 
     login() {
         const userName = this.loginForm.get('userName').value;
         const password = this.loginForm.get('password').value;
-
         this.authService.authenticate(userName, password)
             .subscribe(
                 () => this.router.navigate(['user', userName]),
