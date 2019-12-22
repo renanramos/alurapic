@@ -7,6 +7,8 @@ import { RequestInterceptor } from './auth/request.interceptor';
 import { FooterComponent } from './footer/footer.component';
 import { AlertModule } from '../shared/component/alert/alert.module';
 import { LoadingModule } from '../shared/loading/loading.module';
+import { MenuModule } from '../shared/component/menu/menu.module';
+import { ShowIfLoggedModule } from '../shared/directives/show-if-logged/show-if-logged.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import { LoadingModule } from '../shared/loading/loading.module';
         CommonModule,
         RouterModule,
         AlertModule,
-        LoadingModule
+        LoadingModule,
+        MenuModule,
+        ShowIfLoggedModule
     ],
     providers: [
         {
