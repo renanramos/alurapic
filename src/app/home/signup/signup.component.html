@@ -20,7 +20,7 @@
             text="Full name is required!">
         </app-vmessage>
         <app-vmessage 
-            *ngIf="signupForm.get('fullName').errors?.minlength && form.submitted"
+            *ngIf="signupForm.get('fullName').errors?.minlength && (form.submitted || signupForm.get('fullName').touched)"
             text="Minimun length is 2">
         </app-vmessage>
         <app-vmessage 
@@ -70,6 +70,11 @@
             *ngIf="signupForm.get('password').errors?.maxlength && form.submitted"
             text="Maximun length is 18">
         </app-vmessage>
+        <app-message
+            *ngIf="signupForm.errors?.userNamePassword"
+            text="Username and password must be different"
+        ></app-message
+            >
     </div>
 
     <button class="btn btn-primary btn-block">Register</button>

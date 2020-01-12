@@ -7,6 +7,7 @@ import { UserNotTakenValidatorService } from './user-not-taken.validator.service
 import { NewUser } from './new-user';
 import { SignUpService } from './signup.service';
 import { PlatformDetectorService } from 'src/app/core/platform-detector/platform-detector.service';
+import { userNamePasswordValidator } from './username-password.validator';
 
 @Component({
     templateUrl: './signup.component.html',
@@ -55,6 +56,8 @@ export class SignUpComponent implements OnInit {
                     Validators.maxLength(14)
                 ]
             ]
+        }, {
+            validator: userNamePasswordValidator
         })
         
     }
